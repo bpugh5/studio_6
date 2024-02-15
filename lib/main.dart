@@ -53,37 +53,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   bool isLightTheme = true;
 
-  void toggleDarkMode() {
-    setState(() {
-      isLightTheme = !isLightTheme;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.blue,
-                (isLightTheme) ? Colors.yellow : Colors.black
-              ]),
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              Colors.blue,
+              (isLightTheme) ? Colors.yellow : Colors.black,
+            ],
+          ),
         ),
         child: Column(
           children: [
             const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: toggleDarkMode,
-              style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-              child: const Text(
-                "Toggle Dark Mode",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -120,7 +108,48 @@ class _MyHomePageState extends State<MyHomePage> {
                       color: Colors.black),
                 ]),
               ),
-            )
+            ),
+            Container(
+              height: 150,
+              child: ListView.builder(
+                padding: const EdgeInsets.all(8),
+                scrollDirection: Axis.horizontal,
+                itemCount: 15,
+                itemBuilder: (BuildContext context, int index) => SizedBox(
+                  width: 100,
+                  child: Card(
+                    child: Center(
+                      child: Text("Forecast $index"),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Switch(
+                    value: false,
+                    onChanged: (bool value) {
+                      setState(() {
+                        isLightTheme = value;
+                      });
+                    }
+                  ),
+                  // ElevatedButton(
+                  //   onPressed: toggleDarkMode,
+                  //   style: const ButtonStyle(
+                  //       backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  //   child: const Text(
+                  //     "Toggle Dark Mode",
+                  //     style: TextStyle(color: Colors.white),
+                  //   ),
+                  // ),
+                  const SizedBox(height: 50),
+                ],
+              ),
+            ),
           ],
         ),
       ),
