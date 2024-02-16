@@ -144,29 +144,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ),
                   ),
-                  // Switch(
-                  //     thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
-                  //         (Set<MaterialState> states) {
-                  //       if (states.contains(MaterialState.disabled)) {
-                  //         return const Icon(Icons.dark_mode);
-                  //       }
-                  //       return const Icon(Icons.light_mode);
-                  //     }),
-                  //     value: isLightTheme,
-                  //     onChanged: (bool value) {
-                  //       setState(() {
-                  //         isLightTheme = value;
-                  //       });
-                  //     }),
-                  // ElevatedButton(
-                  //   onPressed: toggleDarkMode,
-                  //   style: const ButtonStyle(
-                  //       backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                  //   child: const Text(
-                  //     "Toggle Dark Mode",
-                  //     style: TextStyle(color: Colors.white),
-                  //   ),
-                  // ),
                 ],
               ),
             ),
