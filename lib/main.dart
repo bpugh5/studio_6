@@ -52,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   };
 
   bool isLightTheme = true;
+  Icon _icon = const Icon(Icons.dark_mode);
 
   @override
   Widget build(BuildContext context) {
@@ -129,14 +130,34 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Switch(
-                    value: false,
-                    onChanged: (bool value) {
-                      setState(() {
-                        isLightTheme = value;
-                      });
-                    }
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: IconButton(
+                      iconSize: 30,
+                      color: isLightTheme ? Colors.black : Colors.white,
+                      icon: _icon,
+                      onPressed: () {
+                        _icon = (isLightTheme) ? const Icon(Icons.light_mode) : const Icon(Icons.dark_mode);  
+                        setState(() {
+                          isLightTheme = !isLightTheme;
+                        });
+                      },
+                    ),
                   ),
+                  // Switch(
+                  //     thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+                  //         (Set<MaterialState> states) {
+                  //       if (states.contains(MaterialState.disabled)) {
+                  //         return const Icon(Icons.dark_mode);
+                  //       }
+                  //       return const Icon(Icons.light_mode);
+                  //     }),
+                  //     value: isLightTheme,
+                  //     onChanged: (bool value) {
+                  //       setState(() {
+                  //         isLightTheme = value;
+                  //       });
+                  //     }),
                   // ElevatedButton(
                   //   onPressed: toggleDarkMode,
                   //   style: const ButtonStyle(
@@ -146,7 +167,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   //     style: TextStyle(color: Colors.white),
                   //   ),
                   // ),
-                  const SizedBox(height: 50),
                 ],
               ),
             ),
